@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Osoitemuistio</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+
+<body>
+<div class="col-md-4">
+<h1 class="text-center">Osoitemuistio</h1>
+</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Hei, [[${#httpServletRequest.remoteUser}]]!</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-secondary btn-sm"/>
+		</form>
+	</div>
+
+<table class="table table-striped">
+<tr>
+<th>Nimi</th>
+<th>Osoite</th>
+<th>Puhelinnumero</th>
+<th sec:authorize="hasRole('ADMIN')"> </th>
+		</tr>  
+    	<tr th:each = "yhteystieto : ${yhteystiedot}">
+    		<td th:text="${yhteystieto.etunimi} + ' ' + ${yhteystieto.sukunimi}"></td>
+    		<td th:text="${yhteystieto.katuos} + ', ' + ${yhteystieto.postinro} + ' ' + ${yhteystieto.kaupunki}"></td> 
+    		<td th:text="${yhteystieto.puhelin}"></td>
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${yhteystieto.id})}" class="btn btn-info">Muokkaa</a></td>
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${yhteystieto.id})}" class="btn btn-danger">Poista</a></td>
+    	</tr>
+     </table>  	
+     
+     <a href="/uusi" class="btn btn-info btn-lg">Lisää uusi</a>
+
+</body>
+</html>

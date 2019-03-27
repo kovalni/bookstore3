@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Osoitemuistio</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<h1>Lisää uusi yhteystieto</h1>
+	<div>
+		<form th:object="${yhteystieto}" th:action="@{save}" action="#" method="post">
+		  	<label for="etunimi">Etunimi: </label>
+			<input type="text" id="etunimi" th:field="*{etunimi}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="sukunimi">Sukunimi: </label>
+			<input type="text" id="sukunimi" th:field="*{sukunimi}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="katuos">Katuosoite: </label>
+			<input type="text" id="katuos" th:field="*{katuos}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="postinro">Postinumero: </label>
+			<input type="text" id="postinro" th:field="*{postinro}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="kaupunki">Kaupunki: </label>
+			<input type="text" id="kaupunki" th:field="*{kaupunki}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="puhelin">Puhelinnumero: </label>
+			<input type="text" id="puhelin" th:field="*{puhelin}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+		
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Lisää" class="btn btn-info"></input>
+		</form>
+	</div>
+</body>
+</html>
